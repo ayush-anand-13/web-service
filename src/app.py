@@ -32,24 +32,24 @@ app = Flask(__name__)
 rp_id = "localhost"
 origin = "http://localhost:5000"
 rp_name = "Sample RP"
-user_id = "some_random_user_identifier_like_a_uuid"
-username = f"your.name@{rp_id}"
-print(f"User ID: {user_id}")
-print(f"Username: {username}")
+# user_id = "some_random_user_identifier_like_a_uuid"
+# username = f"your.name@{rp_id}"
+# print(f"User ID: {user_id}")
+# print(f"Username: {username}")
 
 # A simple way to persist credentials by user ID
 in_memory_db: Dict[str, UserAccount] = {}
 
 # Register our sample user
-in_memory_db[user_id] = UserAccount(
-    id=user_id,
-    username=username,
-    credentials=[],
-)
+# in_memory_db[user_id] = UserAccount(
+#     id=user_id,
+#     username=username,
+#     credentials=[],
+# )
 
 # Passwordless assumes you're able to identify the user before performing registration or
 # authentication
-logged_in_user_id = user_id
+#logged_in_user_id = user_id
 
 # A simple way to persist challenges until response verification
 current_registration_challenge = None
@@ -65,10 +65,11 @@ current_authentication_challenge = None
 
 @app.route("/")
 def index():
-    context = {
-        "username": username,
-    }
-    return render_template("index.html", **context)
+    #context = {
+    #    "username": username,
+    #}
+    #return render_template("index.html", **context)
+    return render_template("index.html")
 
 
 ################
@@ -78,12 +79,25 @@ def index():
 ################
 
 
-@app.route("/generate-registration-options", methods=["GET"])
-def handler_generate_registration_options():
+@app.route("/generate-registration-options/<username>", methods=["GET"])
+def handler_generate_registration_options(username):
     global current_registration_challenge
-    global logged_in_user_id
+    #global logged_in_user_id
+    print(username)
+    val = username.split('@')
+    user_id = val[0]
 
-    user = in_memory_db[logged_in_user_id]
+
+
+    in_memory_db[user_id] = UserAccount(
+        id=user_id,
+        username=username,
+        credentials=[],
+    )
+
+    #user = in_memory_db[logged_in_user_id]
+    user = in_memory_db[user_id]
+    print(user)
 
     options = generate_registration_options(
         rp_id=rp_id,
@@ -104,16 +118,20 @@ def handler_generate_registration_options():
     )
 
     current_registration_challenge = options.challenge
+    print(options)
 
     return options_to_json(options)
 
 
-@app.route("/verify-registration-response", methods=["POST"])
-def handler_verify_registration_response():
+@app.route("/verify-registration-response/<username>", methods=["POST"])
+def handler_verify_registration_response(username):
     global current_registration_challenge
-    global logged_in_user_id
+    #global logged_in_user_id
+    val = username.split('@')
+    user_id = val[0]
 
     body = request.get_data()
+    print(body)
 
     try:
         credential = RegistrationCredential.parse_raw(body)
@@ -126,7 +144,8 @@ def handler_verify_registration_response():
     except Exception as err:
         return {"verified": False, "msg": str(err), "status": 400}
 
-    user = in_memory_db[logged_in_user_id]
+    #user = in_memory_db[logged_in_user_id]
+    user = in_memory_db[user_id]
 
     new_credential = Credential(
         id=verification.credential_id,
@@ -147,12 +166,15 @@ def handler_verify_registration_response():
 ################
 
 
-@app.route("/generate-authentication-options", methods=["GET"])
-def handler_generate_authentication_options():
+@app.route("/generate-authentication-options/<username>", methods=["GET"])
+def handler_generate_authentication_options(username):
     global current_authentication_challenge
-    global logged_in_user_id
+    #global logged_in_user_id
+    val = username.split('@')
+    user_id = val[0]
 
-    user = in_memory_db[logged_in_user_id]
+    user = in_memory_db[user_id]
+
 
     options = generate_authentication_options(
         rp_id=rp_id,
@@ -168,10 +190,14 @@ def handler_generate_authentication_options():
     return options_to_json(options)
 
 
-@app.route("/verify-authentication-response", methods=["POST"])
-def hander_verify_authentication_response():
+@app.route("/verify-authentication-response/<username>", methods=["POST"])
+def hander_verify_authentication_response(username):
     global current_authentication_challenge
-    global logged_in_user_id
+    #global logged_in_user_id
+    val = username.split('@')
+    user_id = val[0]
+
+
 
     body = request.get_data()
 
@@ -179,7 +205,7 @@ def hander_verify_authentication_response():
         credential = AuthenticationCredential.parse_raw(body)
 
         # Find the user's corresponding public key
-        user = in_memory_db[logged_in_user_id]
+        user = in_memory_db[user_id]
         user_credential = None
         for _cred in user.credentials:
             if _cred.id == credential.raw_id:

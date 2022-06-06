@@ -8,6 +8,7 @@ const dbgRegister = document.getElementById("dbgRegister");
 const statusAuthenticate = document.getElementById("statusAuthenticate");
 const dbgAuthenticate = document.getElementById("dbgAuthenticate");
 
+
 /**
  * Helper methods
  */
@@ -48,9 +49,13 @@ document
   .addEventListener("click", async () => {
     resetStatus(statusRegister);
     resetDebug(dbgRegister);
+    var username = document.getElementById("username").value;
 
     // Get options
-    const resp = await fetch("/generate-registration-options");
+    //const resp = await fetch("/generate-registration-options");
+    let text1 = "/generate-registration-options/";
+    let result = text1.concat(username);
+    const resp = await fetch(result);
     const opts = await resp.json();
     printToDebug(
       dbgRegister,
@@ -73,8 +78,10 @@ document
     }
 
     // Send response to server
+    let text2 = "/verify-registration-response/";
+    let result1 = text2.concat(username)
     const verificationResp = await fetch(
-      "/verify-registration-response",
+      result1,
       {
         method: "POST",
         headers: {
@@ -107,9 +114,15 @@ document
   .addEventListener("click", async () => {
     resetStatus(statusAuthenticate);
     resetDebug(dbgAuthenticate);
+    var username1 = document.getElementById("username").value;
 
     // Get options
-    const resp = await fetch("/generate-authentication-options");
+    //const resp = await fetch("/generate-registration-options");
+    let text3 = "/generate-authentication-options/";
+    let result3 = text3.concat(username1);
+
+    // Get options
+    const resp = await fetch(result3);
     const opts = await resp.json();
     printToDebug(
       dbgAuthenticate,
@@ -132,8 +145,10 @@ document
     }
 
     // Send response to server
+    let text4 =   "/verify-authentication-response";
+    let result4 = text4.concat(username1);
     const verificationResp = await fetch(
-      "/verify-authentication-response",
+      result4,
       {
         method: "POST",
         headers: {
