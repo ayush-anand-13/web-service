@@ -17,7 +17,8 @@ from webauthn.helpers.structs import (
 )
 from webauthn.helpers.cose import COSEAlgorithmIdentifier
 
-from .models import Credential, UserAccount
+#from .models import Credential, UserAccount
+from models import Credential, UserAccount
 
 
 # Create our Flask app
