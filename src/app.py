@@ -156,6 +156,7 @@ def handler_verify_registration_response(username):
     )
 
     user.credentials.append(new_credential)
+    print("No error")
 
     return {"verified": True}
 
@@ -230,5 +231,7 @@ def hander_verify_authentication_response(username):
 
     # Update our credential's sign count to what the authenticator says it is now
     user_credential.sign_count = verification.new_sign_count
+
+    print("No error")
 
     return {"verified": True}
