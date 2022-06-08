@@ -145,7 +145,7 @@ document
     }
 
     // Send response to server
-    let text4 =   "/verify-authentication-response";
+    let text4 =   "/verify-authentication-response/";
     let result4 = text4.concat(username1);
     const verificationResp = await fetch(
       result4,
