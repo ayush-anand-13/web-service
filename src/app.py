@@ -30,7 +30,7 @@ app = Flask(__name__)
 #
 ################
 
-rp_id = "*.ackapp.com"
+rp_id = "www.testwebauthn.ackapp.com"
 origin = "http://testwebauthn.ackapp"
 rp_name = "Sample RP"
 # user_id = "some_random_user_identifier_like_a_uuid"
