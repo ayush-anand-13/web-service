@@ -31,7 +31,7 @@ app = Flask(__name__)
 ################
 
 rp_id = "testwebauthn.ackapp.com"
-origin = "http://testwebauthn.ackapp"
+origin = "https://testwebauthn.ackapp.com"
 rp_name = "webauthn"
 # user_id = "some_random_user_identifier_like_a_uuid"
 # username = f"your.name@{rp_id}"
