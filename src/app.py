@@ -30,8 +30,8 @@ app = Flask(__name__)
 #
 ################
 
-rp_id = "localhost"
-origin = "http://localhost:5000"
+rp_id = "*.ackapp.com"
+origin = "http://testwebauthn.ackapp"
 rp_name = "Sample RP"
 # user_id = "some_random_user_identifier_like_a_uuid"
 # username = f"your.name@{rp_id}"
