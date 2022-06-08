@@ -132,10 +132,10 @@ def handler_verify_registration_response(username):
     user_id = val[0]
 
     body = request.get_data()
-    print(body)
+    #print(body)
 
     try:
-        print("No error0")
+
         credential = RegistrationCredential.parse_raw(body)
         verification = verify_registration_response(
             credential=credential,
@@ -143,13 +143,13 @@ def handler_verify_registration_response(username):
             expected_rp_id=rp_id,
             expected_origin=origin,
         )
-        print("No error10")
+
     except Exception as err:
         return {"verified": False, "msg": str(err), "status": 400}
 
     #user = in_memory_db[logged_in_user_id]
     user = in_memory_db[user_id]
-    print("No error1")
+
 
     new_credential = Credential(
         id=verification.credential_id,
@@ -159,7 +159,7 @@ def handler_verify_registration_response(username):
     )
 
     user.credentials.append(new_credential)
-    print("No error")
+
 
     return {"verified": True}
 
@@ -191,6 +191,8 @@ def handler_generate_authentication_options(username):
     )
 
     current_authentication_challenge = options.challenge
+    print("values for login")
+    print(options)
 
     return options_to_json(options)
 
@@ -205,9 +207,12 @@ def hander_verify_authentication_response(username):
 
 
     body = request.get_data()
+    print(body)
 
     try:
         credential = AuthenticationCredential.parse_raw(body)
+        print("credential")
+        print(credential)
 
         # Find the user's corresponding public key
         user = in_memory_db[user_id]
@@ -220,6 +225,7 @@ def hander_verify_authentication_response(username):
             raise Exception("Could not find corresponding public key in DB")
 
         # Verify the assertion
+        print("noerror0")
         verification = verify_authentication_response(
             credential=credential,
             expected_challenge=current_authentication_challenge,
@@ -229,6 +235,7 @@ def hander_verify_authentication_response(username):
             credential_current_sign_count=user_credential.sign_count,
             require_user_verification=True,
         )
+        print("noerror1")
     except Exception as err:
         return {"verified": False, "msg": str(err), "status": 400}
 
