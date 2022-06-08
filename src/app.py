@@ -135,6 +135,7 @@ def handler_verify_registration_response(username):
     print(body)
 
     try:
+        print("No error0")
         credential = RegistrationCredential.parse_raw(body)
         verification = verify_registration_response(
             credential=credential,
@@ -142,11 +143,13 @@ def handler_verify_registration_response(username):
             expected_rp_id=rp_id,
             expected_origin=origin,
         )
+        print("No error10")
     except Exception as err:
         return {"verified": False, "msg": str(err), "status": 400}
 
     #user = in_memory_db[logged_in_user_id]
     user = in_memory_db[user_id]
+    print("No error1")
 
     new_credential = Credential(
         id=verification.credential_id,
