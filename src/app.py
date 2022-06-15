@@ -148,11 +148,12 @@ def handler_verify_registration_response(username):
     user_id = val[0]
 
     body = request.get_data()
-    #print(body)
+    print(body)
 
     try:
 
         credential = RegistrationCredential.parse_raw(body)
+        print(credential)
         verification = verify_registration_response(
             credential=credential,
             expected_challenge=current_registration_challenge,
