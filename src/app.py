@@ -80,6 +80,14 @@ def apple(filename):
     #return render_template("index.html", **context)
     return send_from_directory("./", filename)
 
+@app.route("/.well-known/<path:filename>")
+def appleConnect(filename):
+    #context = {
+    #    "username": username,
+    #}
+    #return render_template("index.html", **context)
+    return send_from_directory("./well-known", filename)
+
 
 ################
 #
