@@ -1,7 +1,7 @@
 from typing import Dict
 import json
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
 from webauthn import (
     generate_registration_options,
     verify_registration_response,
@@ -71,6 +71,14 @@ def index():
     #}
     #return render_template("index.html", **context)
     return render_template("index.html")
+
+@app.route("/<path:filename>")
+def apple(filename):
+    #context = {
+    #    "username": username,
+    #}
+    #return render_template("index.html", **context)
+    return send_from_directory("./", filename)
 
 
 ################

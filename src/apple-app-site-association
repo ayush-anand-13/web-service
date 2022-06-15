@@ -1,0 +1,13 @@
+
+
+    {
+        "applinks": {
+            "apps": [],
+            "details": [
+                {
+                    "appID": "94KV3E626L.com.example.apple-samplecode.DemoTest",
+                    "paths": [ "*"]
+                }
+            ]
+        }
+    }
