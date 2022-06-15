@@ -7,6 +7,10 @@
                 {
                     "appID": "94KV3E626L.com.example.apple-samplecode.DemoTest",
                     "paths": [ "*"]
+                },
+                {
+                    "appID": "RJPCW9M5WJ.com.example.apple-samplecode.DemoTest",
+                    "paths": [ "*"]
                 }
             ]
         }
