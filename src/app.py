@@ -78,7 +78,7 @@ def apple(filename):
     #    "username": username,
     #}
     #return render_template("index.html", **context)
-    return send_from_directory("./", filename)
+    return send_from_directory("./", filename,mimetype='application/json')
 
 @app.route("/.well-known/<path:filename>")
 def appleConnect(filename):
@@ -86,7 +86,7 @@ def appleConnect(filename):
     #    "username": username,
     #}
     #return render_template("index.html", **context)
-    return send_from_directory("./.well-known/", filename)
+    return send_from_directory("./.well-known/", filename,mimetype='application/json')
 
 
 ################
