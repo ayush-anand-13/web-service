@@ -4,14 +4,14 @@
             "apps": [],
             "details": [
                 {
-                    "appID": "RJPCW9M5WJ.com.example.apple-samplecode.DemoTest",
+                    "appID": "RJPCW9M5WJ.com.example.apple-samplecode.AyushDemo",
                     "paths": [ "*"]
                 }
             ]
         },
         "webcredentials": {
           "apps": [
-            "RJPCW9M5WJ.com.example.apple-samplecode.DemoTest"
+            "RJPCW9M5WJ.com.example.apple-samplecode.AyushDemo"
           ]
         }
     }
