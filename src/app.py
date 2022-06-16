@@ -1,7 +1,7 @@
 from typing import Dict
 import json
 
-from flask import Flask, render_template, request, send_from_directory
+from flask import Flask, render_template, request, send_from_directory, jsonify, make_response
 from webauthn import (
     generate_registration_options,
     verify_registration_response,
@@ -194,6 +194,10 @@ def handler_generate_authentication_options(username):
     #global logged_in_user_id
     val = username.split('@')
     user_id = val[0]
+
+    if user_id not in in_memory_db.keys():
+        message = jsonify(message='user is missing. Please enroll')
+        return make_response(message, 400)
 
     user = in_memory_db[user_id]
 

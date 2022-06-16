@@ -126,7 +126,7 @@ document
     const opts = await resp.json();
     printToDebug(
       dbgAuthenticate,
-      "Authentication Options",
+      "Authentication Options/Error",
       JSON.stringify(opts, null, 2)
     );
 
