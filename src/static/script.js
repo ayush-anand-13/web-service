@@ -45,11 +45,11 @@ function getFailureStatus(message) {
  * Register Button
  */
 document
-  .getElementById("btnRegister")
+  .getElementById("enroll")
   .addEventListener("click", async () => {
     resetStatus(statusRegister);
     resetDebug(dbgRegister);
-    var username = document.getElementById("username").value;
+    var username = document.getElementById("user").value;
 
     // Get options
     //const resp = await fetch("/generate-registration-options");
@@ -110,11 +110,11 @@ document
  * Authenticate Button
  */
 document
-  .getElementById("btnAuthenticate")
+  .getElementById("continue")
   .addEventListener("click", async () => {
     resetStatus(statusAuthenticate);
     resetDebug(dbgAuthenticate);
-    var username1 = document.getElementById("username").value;
+    var username1 = document.getElementById("user").value;
 
     // Get options
     //const resp = await fetch("/generate-registration-options");
