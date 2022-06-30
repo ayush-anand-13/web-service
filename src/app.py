@@ -33,26 +33,11 @@ app = Flask(__name__)
 rp_id = "testwebauthn.ackapp.com"
 origin = "https://testwebauthn.ackapp.com"
 rp_name = "webauthn"
-# user_id = "some_random_user_identifier_like_a_uuid"
-# username = f"your.name@{rp_id}"
-# print(f"User ID: {user_id}")
-# print(f"Username: {username}")
 
-# A simple way to persist credentials by user ID
+
 in_memory_db: Dict[str, UserAccount] = {}
 
-# Register our sample user
-# in_memory_db[user_id] = UserAccount(
-#     id=user_id,
-#     username=username,
-#     credentials=[],
-# )
 
-# Passwordless assumes you're able to identify the user before performing registration or
-# authentication
-#logged_in_user_id = user_id
-
-# A simple way to persist challenges until response verification
 current_registration_challenge = None
 current_authentication_challenge = None
 
@@ -66,26 +51,17 @@ current_authentication_challenge = None
 
 @app.route("/")
 def index():
-    #context = {
-    #    "username": username,
-    #}
-    #return render_template("index.html", **context)
+
     return render_template("index.html")
 
 @app.route("/<path:filename>")
 def apple(filename):
-    #context = {
-    #    "username": username,
-    #}
-    #return render_template("index.html", **context)
+
     return send_from_directory("./", filename,mimetype='application/json')
 
 @app.route("/.well-known/<path:filename>")
 def appleConnect(filename):
-    #context = {
-    #    "username": username,
-    #}
-    #return render_template("index.html", **context)
+
     return send_from_directory("./.well-known/", filename,mimetype='application/json')
 
 
@@ -263,6 +239,6 @@ def hander_verify_authentication_response(username):
     # Update our credential's sign count to what the authenticator says it is now
     user_credential.sign_count = verification.new_sign_count
 
-    print("No error")
+    #print("No error")
 
     return {"verified": True}

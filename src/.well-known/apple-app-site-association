@@ -1,5 +1,4 @@
-
-    {
+  {
         "applinks": {
             "apps": [],
             "details": [
@@ -10,12 +9,16 @@
                 {
                     "appID": "RJPCW9M5WJ.com.example.apple-samplecode.AyushDemo2",
                     "paths": [ "*"]
+                },
+                {
+                    "appID": "RJPCW9M5WJ.com.amazon.map.SampleAppSwifty",
+                    "paths": [ "*"]
                 }
             ]
         },
         "webcredentials": {
           "apps": [
-            "RJPCW9M5WJ.com.example.apple-samplecode.AyushDemo","RJPCW9M5WJ.com.example.apple-samplecode.AyushDemo2"
+            "RJPCW9M5WJ.com.example.apple-samplecode.AyushDemo","RJPCW9M5WJ.com.example.apple-samplecode.AyushDemo2","RJPCW9M5WJ.com.amazon.map.SampleAppSwifty"
           ]
         }
     }
