@@ -54,6 +54,11 @@ def index():
 
     return render_template("index.html")
 
+@app.route("/success.html")
+def success():
+
+    return render_template("success.html")
+
 @app.route("/<path:filename>")
 def apple(filename):
 

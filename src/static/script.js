@@ -51,6 +51,9 @@ document
     resetDebug(dbgRegister);
     var username = document.getElementById("user").value;
 
+    //window.open("success.html")
+    //const resp5 = await fetch("/success.html")
+
     // Get options
     //const resp = await fetch("/generate-registration-options");
     let text1 = "/generate-registration-options/";
@@ -163,6 +166,7 @@ document
     const { verified, msg } = verificationRespJSON;
     if (verified) {
       printToStatus(statusAuthenticate, getPassStatus());
+      location.replace("./success.html")
     } else {
       printToStatus(statusAuthenticate, getFailureStatus(err));
     }
