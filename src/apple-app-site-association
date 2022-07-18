@@ -14,12 +14,16 @@
                 {
                     "appID": "RJPCW9M5WJ.com.amazon.map.SampleAppSwifty",
                     "paths": [ "*"]
+                },
+                {
+                    "appID": "RJPCW9M5WJ.com.amazon.map.SampleAppSignIn",
+                    "paths": [ "*"]
                 }
             ]
         },
         "webcredentials": {
           "apps": [
-            "RJPCW9M5WJ.com.example.apple-samplecode.AyushDemo","RJPCW9M5WJ.com.example.apple-samplecode.AyushDemo2","RJPCW9M5WJ.com.amazon.map.SampleAppSwifty"
+            "RJPCW9M5WJ.com.example.apple-samplecode.AyushDemo","RJPCW9M5WJ.com.example.apple-samplecode.AyushDemo2","RJPCW9M5WJ.com.amazon.map.SampleAppSwifty","RJPCW9M5WJ.com.amazon.map.SampleAppSignIn"
           ]
         }
     }
